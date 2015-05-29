@@ -1,0 +1,31 @@
+﻿@model MVCMusicStore.Models.Album
+
+@{
+    ViewBag.Title = "Album - " + Model.Title;
+}
+
+<h2>@Model.Title</h2>
+<hr />
+
+<p>
+    <img alt="@Model.Title" src="@Model.AlbumArtUrl" />
+</p>
+<div id="album-details">
+    <p>
+        <em>Genre :</em>
+        @Model.Genre.Name
+    </p>
+    <p>
+        <em>Artist :</em>
+        @Model.Artist.Name
+    </p>
+    <p>
+        <em>Price :</em>
+        @String.Format("{0:C}", Model.Price)
+    </p>
+    <p>
+        <a href="@Url.Action("AddToCart", "ShoppingCart", new { id = Model.AlbumID })" class="btn btn-primary btn-xs">
+             Add to Cart <i class="glyphicon glyphicon-shopping-cart"></i>
+        </a>
+    </p>
+</div>

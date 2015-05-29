@@ -1,0 +1,58 @@
+﻿@model List<MVCMusicStore.Models.Album>
+@{
+    ViewBag.Title = "MVC Music Store";
+}
+
+
+<div class="jumbotron">
+    <h1>MVC Music Store</h1>
+    <p class="lead">If you wanna travel back in the time, to listen to the best hits, you're at the right place</p>
+    <p><a href="#" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div id="promotion"></div>
+    <h4><em>Most</em> listened of our store</h4>
+</div>
+<div class="row">
+    <div class="span12">
+        <div class="well">
+            <div id="myCarousel" class="carousel fdi-Carousel slide">
+                <!-- Carousel items -->
+                <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
+                    <div class="carousel-inner onebyone-carosel">
+                        @{var first = Model.First().AlbumID;}
+                        @foreach (var album in Model)
+                        {
+                            if (first == album.AlbumID)
+                            {
+                                <div class="item active">
+                                    <div class="col-md-4">
+                                        <a href="@Url.Action("Details", "Store", new { id = album.AlbumID })">
+                                            <img alt="@album.Title" src="@album.AlbumArtUrl" class="img-responsive center-block" width="200" height="200" />
+                                        </a>
+                                        <div class="text-center"><span>@album.Title</span></div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="item">
+                                    <div class="col-md-4">
+                                        <a href="@Url.Action("Details", "Store", new { id = album.AlbumID })">
+                                            <img alt="@album.Title" src="@album.AlbumArtUrl" class="img-responsive center-block" width="200" height="200" />
+                                        </a>
+                                        <div class="text-center"><span>@album.Title</span></div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
+                    <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
+                </div>
+                <!--/carousel-inner-->
+            </div><!--/myCarousel-->
+        </div><!--/well-->
+    </div>
+</div>

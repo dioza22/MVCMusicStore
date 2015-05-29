@@ -1,0 +1,57 @@
+﻿@model MVCMusicStore.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<h3><em>Review</em> your cart </h3>
+
+<p>
+    <a href="@Url.Action("AddressAndPayment","Checkout",null)" class="btn btn-primary btn-xs">
+        Checkout <i class="glyphicon glyphicon-forward"></i>
+    </a>
+</p>
+
+<div id="update-message"></div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Album Name</th>
+            <th>Price (each)</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr id="row-@item.RecordID">
+                <td>
+                    @Html.ActionLink(item.Album.Title, "Details", "Store", new { id = item.AlbumID }, null)
+                </td>
+                <td>
+                    @string.Format("{0:C}", item.Album.Price)
+                </td>
+                <td id="item-count-@item.RecordID">
+                    @item.Count
+                </td>
+                <td>
+                    <a href="#" id="RemoveLink" data-id="@item.RecordID" class="btn btn-primary btn-xs">
+                        <i class="glyphicon glyphicon-remove"></i>Remove From Cart
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td id="cart-total">
+                @string.Format("{0:C}", Model.CartTotal)
+            </td>
+        </tr>
+    </tfoot>
+</table>

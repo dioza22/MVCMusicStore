@@ -1,0 +1,28 @@
+﻿@model MVCMusicStore.Models.Album
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Confirmation</h2>
+
+<h3>Are you sure you want to delete this album?</h3>
+<div>
+    <hr />
+    <h4>@Html.DisplayFor(model => model.Title)</h4>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="submit" class="btn btn-primary btn-xs">
+                <i class="glyphicon glyphicon-floppy-remove"></i> Delete
+            </button> |
+            <a href="@Url.Action("Index")" class="btn btn-xs btn-primary">
+                <i class="glyphicon glyphicon-backward"></i> Back to List
+                <span class="sr-only">Back to List</span>
+            </a>
+        </div>
+    }
+</div>
