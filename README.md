@@ -1,2 +1,2 @@
 # MVCMusicStore
-A replication of the Jon G. Tutorial
+A replication of the Jon G. tutorial
